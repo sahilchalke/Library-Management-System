@@ -14,6 +14,7 @@ import com.mysql.jdbc.PreparedStatement;
 import bean.Books;
 import bean.Invoice;
 import bean.Orders;
+import bean.Registration;
 
 
 
@@ -256,6 +257,43 @@ public class MySqlJDBC implements DatabaseConstants {
 			conn = DriverManager.getConnection(DB_URL,USER,PASS);
 			stmt = conn.createStatement();
 			sqlQuery = "Delete from book where book_name='"+bookName+"'";
+			int i = stmt.executeUpdate(sqlQuery);
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+
+	}
+	
+	public ArrayList<Registration> selectRegistrationInfo(String email) {
+
+
+		ArrayList<Registration> regList=new ArrayList<Registration>();
+
+		try{
+			conn = DriverManager.getConnection(DB_URL,USER,PASS);
+			stmt = conn.createStatement();
+			sqlQuery = "Select * from registration where login_email = '"+email+"'";
+			ResultSet rs = stmt.executeQuery(sqlQuery);
+			while(rs.next()){
+				Registration r = new Registration(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				regList.add(r);
+			}
+			stmt.close();
+			conn.close();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return regList;
+	}
+	
+	public void updateUser(String name, String phone, String loginEmail){
+
+		try{
+			conn = DriverManager.getConnection(DB_URL,USER,PASS);
+			stmt = conn.createStatement();
+			sqlQuery = "Update registration set LOGIN_NAME = '"+name+"', PHONE='"+phone+"' where LOGIN_EMAIL = '"+loginEmail+"'";
 			int i = stmt.executeUpdate(sqlQuery);
 		}
 		catch(SQLException e){

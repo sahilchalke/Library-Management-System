@@ -1,3 +1,4 @@
+<%@page import="bean.Registration"%>
 <%@page import="bean.Books"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -54,25 +55,33 @@
 <br/>
 <br/>
 <br/>
-<%
-String username = session.getAttribute("email").toString();
+
+<% String username = request.getParameter("username");
+	MySqlJDBC mysql = new MySqlJDBC();
+	ArrayList<Registration> reg= new ArrayList<Registration>();
+	reg = mysql.selectRegistrationInfo(username);
+	for(Registration r : reg){
 %>
 
-<font size="8" color="red">Please select from below options</font>
-
-					<form class = 'submit-button' method = 'post' action = 'AcceptBook.jsp'>                  		 			           
-			            <input class = 'submit-button' type = 'submit'  value = 'Accept Pending Invitations' style="margin-left: 45px; width: 500px; height: 50px;"/>
+	<div id="login_container">
+							<li>
+                 <%-- <div class="image"> <img src="<%=p.getImagePath() %>" alt="" style="width: 150px; height: 150px;"/></div> --%>
+                 <br><p> Login Name : <span><%= r.getLogin_name() %></span>
+                 <br><p> Login Email : <span><%= r.getLogin_email() %></span>
+                 <br><p> Phone: <span><%= r.getPhone() %></span>
+                 <br><p> Role: <span><%= r.getRole() %></span>
+                  <form class = 'submit-button' method = 'post' action = 'UpdateStaffInfo.jsp'>
+                  		 <input type='hidden' name = 'loginName' value = '<%=r.getLogin_name()%>' />
+			            <input type='hidden' name = 'loginEmail' value = '<%=r.getLogin_email()%>' />
+			             <input type='hidden' name = 'phone' value = '<%=r.getPhone()%>' />
+			             <input type='hidden' name = 'role' value = '<%=r.getRole()%>' />
+			             			           
+			            <input class = 'submit-button' type = 'submit'  value = 'Update Info' style="margin-left: 45px; width: 100px; height: 30px;"/>
 			        </form>
-			        
-			        <form class = 'submit-button' method = 'post' action = 'ViewStaffInfo.jsp'>                  		 			           
-			            <input class = 'submit-button' type = 'submit'  value = 'View Staff Information' style="margin-left: 45px; width: 500px; height: 50px;"/>
-			        	<input type='hidden' name = 'username' value = '<%=username%>' />
-			        </form>
-			        
-			        <form class = 'submit-button' method = 'post' action = 'ViewStudentInfo.jsp'>                  		 			           
-			            <input class = 'submit-button' type = 'submit'  value = 'View Student Information' style="margin-left: 45px; width: 500px; height: 50px;"/>
-			        </form>
-
-</div>
+               </li>
+							
+						</div>
+						<% } %>
+	
 </body>
 </html>

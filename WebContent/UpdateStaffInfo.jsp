@@ -1,4 +1,4 @@
-<%@page import="bean.Books"%>
+ <%@page import="bean.Books"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ page import="bean.User, database.MySqlJDBC, java.util.Map,java.util.HashMap, java.util.ArrayList" %>
@@ -55,24 +55,30 @@
 <br/>
 <br/>
 <%
-String username = session.getAttribute("email").toString();
+	String loginEmail = request.getParameter("loginEmail");
 %>
+<div id="login_container">
+							<form action='UpdateStaffToDB.jsp' method="">
+								<div align="center">
+									<h2>UpdateStaffInfo</h2><br><br>
+								</div>
+								
+								
+								<br>
 
-<font size="8" color="red">Please select from below options</font>
+								<label><b>Login Name:</b></label><br> <input type="text"
+									placeholder="Enter your name" name="name" id="name" required><br>
 
-					<form class = 'submit-button' method = 'post' action = 'AcceptBook.jsp'>                  		 			           
-			            <input class = 'submit-button' type = 'submit'  value = 'Accept Pending Invitations' style="margin-left: 45px; width: 500px; height: 50px;"/>
-			        </form>
-			        
-			        <form class = 'submit-button' method = 'post' action = 'ViewStaffInfo.jsp'>                  		 			           
-			            <input class = 'submit-button' type = 'submit'  value = 'View Staff Information' style="margin-left: 45px; width: 500px; height: 50px;"/>
-			        	<input type='hidden' name = 'username' value = '<%=username%>' />
-			        </form>
-			        
-			        <form class = 'submit-button' method = 'post' action = 'ViewStudentInfo.jsp'>                  		 			           
-			            <input class = 'submit-button' type = 'submit'  value = 'View Student Information' style="margin-left: 45px; width: 500px; height: 50px;"/>
-			        </form>
+								<label><b>Phone:</b></label><br> <input type="text"
+									placeholder="Enter Phone" name="phone" id="phone" required><br>
 
-</div>
+								
+								<button type="submit">Update</button>
+								<input type='hidden' name = 'loginEmail' value = '<%=loginEmail%>' />
+								<br>
+							</form>
+							
+						</div>
+
 </body>
 </html>

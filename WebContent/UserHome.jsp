@@ -124,10 +124,13 @@
       <input type='hidden' name = 'loginName' value = '<%=login_name%>' />
         </form>
         
-        <form class = 'submit-button' method = 'post' action = 'AcceptBook.jsp'>                  		 			           
-			            <input class = 'submit-button' type = 'submit'  value = 'View/Update Your Information' style="margin-left: 45px; width: 500px; height: 50px;"/>
-			        </form>
+        
 			        
+		 <form class = 'submit-button' method = 'post' action = 'ViewStudentInfo.jsp'>                  		 			           
+			            <input class = 'submit-button' type = 'submit'  value = 'View Student Information' style="margin-left: 45px; width: 500px; height: 50px;"/>
+			       	<input type='hidden' name = 'username' value = '<%=username%>' /> 
+			        </form>
+			        	        
 		<form class = 'submit-button' method = 'post' action = 'ViewCheckoutBooks.jsp'>                  		 			           
 			            <input class = 'submit-button' type = 'submit'  value = 'View Checkout Books' style="margin-left: 45px; width: 500px; height: 50px;"/>
 			       		<input type='hidden' name = 'username' value = '<%=username%>' />

@@ -54,25 +54,18 @@
 <br/>
 <br/>
 <br/>
+
 <%
-String username = session.getAttribute("email").toString();
-%>
+	
+	String loginEmail = request.getParameter("loginEmail");
+	String name = request.getParameter("name");	
+	String phone = request.getParameter("phone");		
+	MySqlJDBC mysql = new MySqlJDBC();
+	mysql.updateUser(name, phone, loginEmail);
+	
+	%>
 
-<font size="8" color="red">Please select from below options</font>
-
-					<form class = 'submit-button' method = 'post' action = 'AcceptBook.jsp'>                  		 			           
-			            <input class = 'submit-button' type = 'submit'  value = 'Accept Pending Invitations' style="margin-left: 45px; width: 500px; height: 50px;"/>
-			        </form>
-			        
-			        <form class = 'submit-button' method = 'post' action = 'ViewStaffInfo.jsp'>                  		 			           
-			            <input class = 'submit-button' type = 'submit'  value = 'View Staff Information' style="margin-left: 45px; width: 500px; height: 50px;"/>
-			        	<input type='hidden' name = 'username' value = '<%=username%>' />
-			        </form>
-			        
-			        <form class = 'submit-button' method = 'post' action = 'ViewStudentInfo.jsp'>                  		 			           
-			            <input class = 'submit-button' type = 'submit'  value = 'View Student Information' style="margin-left: 45px; width: 500px; height: 50px;"/>
-			        </form>
-
-</div>
+<h4>Staff Info Updated Successfully</h4>
+	
 </body>
 </html>

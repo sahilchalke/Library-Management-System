@@ -66,7 +66,7 @@
 		
 	MySqlJDBC mysql = new MySqlJDBC();
 	mysql.updateBook(bookName, bookISBN, fine);
-	System.out.println(bookName);
+//	System.out.println(bookName);
 	%>
 
 <h4><%=bookName %> Updated Successfully</h4>
