@@ -17,7 +17,7 @@ import bean.Orders;
 
 
 
-
+//second
 public class MySqlJDBC implements DatabaseConstants {
 
 	private static Connection conn = null;
